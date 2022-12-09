@@ -78,7 +78,7 @@ function new-image
                 
                 $res.data.url | ForEach-Object {
                     $timestamp = Get-Date -Format o | ForEach-Object { $_ -replace ":", "." }
-                    Invoke-WebRequest -Uri $_ -OutFile "/Users/carolinechiari/DallE/$prompt`-$timestamp.jpg"
+                    Invoke-WebRequest -Uri $_ -OutFile "./$prompt`-$timestamp.jpg"
                 }
             }
             return $res
