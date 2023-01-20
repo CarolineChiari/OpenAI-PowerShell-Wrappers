@@ -28,7 +28,11 @@ function ask-OpenAI
     try
     {
         $res = Invoke-WebRequest -Headers $header -Body $bodyJSON -Uri $url -method post
-        $output = ($res | convertfrom-json -Depth 3).choices.text.trim()
+        if ($PSVersionTable.MajorVersion -ne 5) {
+            $output = ($res | convertfrom-json -Depth 3).choices.text.trim()
+        }else{
+            $output = ($res | convertfrom-json).choices.text.trim()
+        }
         if ($return)
         {
             return $output
